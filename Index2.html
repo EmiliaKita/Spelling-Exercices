@@ -1,74 +1,282 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Exercice d'orthographe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-1: #f2f4f2;
+            --bg-2: #cfd7d2;
+            --ink: #0f1f1a;
+            --muted: #5a6a64;
+            --accent: #2f6f66;
+            --accent-2: #2a3f3a;
+            --card: #ffffff;
+            --ring: rgba(47, 111, 102, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+            color: var(--ink);
+            background: radial-gradient(1000px 600px at 15% 10%, rgba(47, 111, 102, 0.18), transparent 60%),
+                linear-gradient(135deg, var(--bg-1), var(--bg-2));
+            display: flex;
+            justify-content: center;
+            padding: 48px 20px 80px;
+        }
+
+        .page {
+            width: min(960px, 100%);
+            position: relative;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            inset: -40px -20px auto auto;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle at 30% 30%, rgba(47, 111, 102, 0.28), transparent 65%);
+            filter: blur(2px);
+            z-index: 0;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: "Fraunces", "Times New Roman", serif;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            line-height: 1.1;
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            font-size: 1.25rem;
+            color: var(--accent-2);
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(15, 31, 26, 0.08);
+            border: 1px solid rgba(15, 31, 26, 0.08);
+            position: relative;
+            z-index: 1;
+        }
+
+        .city {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .city select {
+            min-width: 160px;
+        }
+
+        ol {
+            padding-left: 20px;
+            margin: 0;
+            display: grid;
+            gap: 14px;
+        }
+
+        li {
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        select {
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 6px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(15, 31, 26, 0.2);
+            background: #f9fbfa;
+            color: var(--ink);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--ring);
+            background: #ffffff;
+        }
+
+        .actions {
+            margin-top: 24px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        button {
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(120deg, #2f6f66, #1f4c46);
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(31, 76, 70, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 24px rgba(31, 76, 70, 0.28);
+        }
+
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 8px 16px rgba(31, 76, 70, 0.24);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 32px 16px 60px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .actions {
+                justify-content: stretch;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
-<body style=" background-color: rgb(107, 134, 134);">
+<body>
+    <main class="page">
+        <header>
+            <div class="eyebrow">Orthographe</div>
+            <h1>Testez vos connaissances</h1>
+            <div>
+                <h2>La, l'a / l'as et là</h2>
+                <h3>Exercice 1 - Niveau Débutant</h3>
+            </div>
+        </header>
 
-<div>
-   <p>
-    Vous vivez dans la ville de :
-    <select id="q1"; style="text-align: center">
-        <option value=""></option>
-        <option>Londres</option>
-        <option>Paris</option>
-        <option>Madrid</option>
-    </select>!
-   </p>
-</div>
+        <section class="card">
+            <div class="city">
+                <span>Vous vivez dans la ville de :</span>
+                <select id="q1">
+                    <option value=""></option>
+                    <option>Londres</option>
+                    <option>Paris</option>
+                    <option>Madrid</option>
+                </select>
+                <span>!</span>
+            </div>
 
-<h2>Testez vos connaissances sur : la, l'a/l'as et là.</h2>
-<h3>Exercice 1 - Niveau Débutant</h3>
+            <ol>
+                <li>
+                    Je vois
+                    <select id="q2">
+                        <option value=""></option>
+                        <option>la</option>
+                        <option>l'a</option>
+                        <option>l'as</option>
+                        <option>là</option>
+                    </select>
+                    voiture rouge.
+                </li>
+                <li>
+                    Tu
+                    <select id="q3">
+                        <option value=""></option>
+                        <option>la</option>
+                        <option>l'a</option>
+                        <option>l'as</option>
+                        <option>là</option>
+                    </select>
+                    fini ton devoir ?
+                </li>
+                <li>
+                    Pose le livre
+                    <select id="q4">
+                        <option value=""></option>
+                        <option>la</option>
+                        <option>l'a</option>
+                        <option>l'as</option>
+                        <option>là</option>
+                    </select>
+                    sur la table.
+                </li>
+                <li>
+                    Il
+                    <select id="q5">
+                        <option value=""></option>
+                        <option>la</option>
+                        <option>l'a</option>
+                        <option>l'as</option>
+                        <option>là</option>
+                    </select>
+                    prise en photo.
+                </li>
+                <li>
+                    Regarde
+                    <select id="q6">
+                        <option value=""></option>
+                        <option>la</option>
+                        <option>l'a</option>
+                        <option>l'as</option>
+                        <option>là</option>
+                    </select>
+                    !
+                </li>
+            </ol>
 
-<div>
-   <p>
-<ol>
-<li>Je vois
-    <select id="q2"; style="text-align: center">
-        <option value=""></option><option>la</option>; <option>l'a</option>; <option>l'as</option>; <option>là</option>
-    </select>
-voiture rouge.</li>
-   </p>
-   <p>
-<li>Tu
-    <select id="q3"; style="text-align: center">
-        <option value=""></option><option>la</option>; <option>l'a</option>; <option>l'as</option>; <option>là</option>
-    </select>
-fini ton devoir ?</li>
-   </p>
-   <p>
-    <li>Pose le livre
-    <select id="q4"; style="text-align: center">
-        <option value=""></option><option>la</option>; <option>l'a</option>; <option>l'as</option>; <option>là</option>
-    </select>
-sur la table.</li>
-   </p>
-   <p>
-    <li>Il
-    <select id="q5"; style="text-align: center">
-        <option value=""></option><option>la</option>; <option>l'a</option>; <option>l'as</option>; <option>là</option>
-    </select>
-prise en photo.</li>
-<p>
-    <li>Regarde
-    <select id="q6"; style="text-align: center">
-        <option value=""></option><option>la</option>; <option>l'a</option>; <option>l'as</option>; <option>là</option>
-    </select>
-!</li>
+            <div class="actions">
+                <button onclick="verifierQuiz()">Valider</button>
+            </div>
+        </section>
+    </main>
 
-</ol>
-</div>
-
-<br><button onclick="verifierQuiz()">Valider</button>
-
-
-
-
-  <script src="Script2.js"></script>
+    <script src="Script2.js"></script>
 </body>
 
 </html>
