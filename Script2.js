@@ -11,63 +11,35 @@ function verifierQuiz(){
     if (quest1 === "" || quest2 ==="" || quest3 ==="" || quest4 ==="" || quest5 ==="" || quest6 ==="") 
     {
         alert("Vous n'avez pas répondu à toutes les questions !!!!!!"); 
-    }
-    if ( quest1 !== "Paris" || quest2 !== "la" || quest3 !== "l'as" || quest4 !== "là" || quest5 !== "l'a" || quest6 !== "là" ){
-        alert("Votre réponse est incorrect");
+        return;
     }
 
     let score = 0;
 
     if (quest1 === "Paris"){
-        alert("Correct !");
         score++
     }
-        console.log(score)
-    
-    
-    console.log(quest2)
-
     if (quest2 === "la"){
-        alert("Correct !");
         score++
     }
-        console.log(score)
-
-
-    console.log(quest3)
-
     if (quest3 === "l'as"){
-        alert("Correct !");
         score++
     }
-        console.log(score)
-
-
-    console.log(quest4)
-
     if (quest4 === "là"){
-        alert("Correct !");
         score++
     }
-        console.log(score)
-
-
-    console.log(quest5)
-
     if (quest5 === "l'a"){
-        alert("Correct !");
         score++
     }
-        console.log(score)
-
-
-    console.log(quest6)
-
     if (quest6 === "là"){
-        alert("Correct !");
         score++
     }
-        console.log(score)
+
+    if (score === 6) {
+        alert("Bravo ! Tout est correct.");
+    } else {
+        alert("Résultat : " + score + "/6 bonnes réponses.");
+    }
 
 } 
 
